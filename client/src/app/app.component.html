@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a routerLink="/homepage" class="navbar-brand"><img id="logo" src="../assets/images/logo.jpg"></a>
+    </div>
+    <form class="navbar-form navbar-left" method="post" action="/search">
+      <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories</a>
+        <ul class="dropdown-menu">
+          <li><a >Ink Printer</a></li>
+          <li><a>Laser Printer</a></li>
+        </ul>
+      </li>
+
+      <li><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/signup">Signup / Login</a>
+        <!--<ul class="dropdown-menu">-->
+          <!--<li><a routerLink="/signup">Signup</a></li>-->
+          <!--<li><a href="/login">Login</a></li>-->
+        <!--</ul>-->
+      </li>
+
+      <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sanjay</a>
+        <ul class="dropdown-menu">
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </li>
+      <li><a href="/cart" class="glyphicon glyphicon-shopping-cart"><span class="badge">0</span></a></li>
+      </ul>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+
+
