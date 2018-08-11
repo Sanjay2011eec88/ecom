@@ -1,6 +1,6 @@
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy();
-var User = require('../models/users');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('../models/users/users');
 
 //Serialize and desearalize
 
@@ -24,23 +24,12 @@ passport.use('local-login', new LocalStrategy({
         if(err){
             return done(err);
         }
-
         if(!user){
-            return done(null, false, req.send({'loginMessage':'No user found'}));
+            return done(null, false);
         }
-
         if(!user.comparePassword(password)){
-            return done(null, false, req.send({'loginMessage':'Please enter valid email and password'}));
+            return done(null, false);
         }
-
         return done(null, user);
     })
 }));
-
-//custom function to validate
-exports.isAuthenticated = function (req, res, next) {
-    if(req.isAuthenticated()){
-        return next()
-    }
-    res.redirect('/login');
-};

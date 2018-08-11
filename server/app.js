@@ -9,6 +9,7 @@ var routes = require('./routes/routes');
 var config = require('./config/config');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
+var flash = require('express-flash');
 
 var app = express();
 
@@ -35,6 +36,9 @@ app.use(session({
     secret: config.secretKey,
     store: new MongoStore({url: config.database, autoReconnect: true})
 }));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname+"/../client", 'public')));
 var routerV1 = express.Router();
 routes.setRoutes(routerV1);

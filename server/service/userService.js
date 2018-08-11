@@ -7,7 +7,6 @@ UserService.signUp = function createUser(req, callback) {
     user.profile.name = req.name;
     user.password = req.password;
     user.email = req.email;
-    console.log("INININININI", JSON.stringify(user));
     User.findOne({ email: req.email }, function(err, existingUser) {
         if (existingUser) {
             console.log("Account with that email address already exists");
@@ -17,7 +16,6 @@ UserService.signUp = function createUser(req, callback) {
                 if (err) {
                     callback(err,null);
                 }else {
-                    console.log("dones");
                     callback(null, user);
                 }
             });
