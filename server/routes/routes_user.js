@@ -8,27 +8,26 @@ module.exports.setRoutes = function(app) {
 
     app.post('/userLogin', utils.loginRedirect, (req, res, next) => {
         passport.authenticate('local-login', (err, user, info) => {
-            console.log(user);
         if (err) {
-            res.status(500).send(err);
+           return res.status(500).send(err);
         }
         if (!user) {
-            res.status(404).send('User not found');
+           return res.status(404).send('User not found');
         }
         if (user) {
         req.logIn(user, function (err) {
                 if (err) {
-                    res.status(500).send('error')
+                   return res.status(500).send('error')
                 }
-                    res.status(200).send('success');
+                   return res.status(200).send(user);
             });
         }
         })(req, res, next);
     });
 
-    app.get('/userLogout', utils.loginRequired, (req, res, next) => {
+    app.get('/userLogout', utils.loginRequired, (req, res) => {
         req.logout();
-        res.status(200).send('success');
+        return res.status(200).send({msg:"Logout successful"});
     });
 
     app.post('/userSignup', function(req, res) {
@@ -38,7 +37,7 @@ module.exports.setRoutes = function(app) {
            }else {
                req.logIn(user, function (err) {
                    if (err) {
-                       res.status(500).send('error')
+                      return res.status(500).send('error')
                    }
                    return res.status(201).send({msg:"Successfully created"});
                });
@@ -46,6 +45,12 @@ module.exports.setRoutes = function(app) {
        })
     });
 
-
-
+    app.get('/userProfile', utils.loginRequired, (req, res, next) => {
+        UserService.getUser(req.user, function (err, userProfile) {
+            if(err){
+                return res.status(500).send(err);
+            }
+        });
+        return res.status(200).send(userProfile);
+    });
 };

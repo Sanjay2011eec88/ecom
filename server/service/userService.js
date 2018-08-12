@@ -1,12 +1,13 @@
 var User = require('../models/users/users');
 
 var UserService = module.exports = {};
+
 UserService.signUp = function createUser(req, callback) {
-    console.log(req);
     var user = new User();
-    user.profile.name = req.name;
+    user.profile.firstName = req.firstName;
+    user.profile.lastName = req.lastName;
     user.password = req.password;
-    user.email = req.email;
+    user.email = req.username;
     User.findOne({ email: req.email }, function(err, existingUser) {
         if (existingUser) {
             console.log("Account with that email address already exists");
@@ -21,4 +22,12 @@ UserService.signUp = function createUser(req, callback) {
             });
         }
     });
+};
+
+UserService.getUser = function getUser(user, callback) {
+    var userProfile = {};
+    userProfile.firstName = user.profile.firstName;
+    userProfile.lastName = user.profile.lastName;
+    userProfile.email = user.email;
+    callback(null, userProfile);
 };

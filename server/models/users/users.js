@@ -14,7 +14,11 @@ var UserSchema = new Schema({
        required: true
    },
    profile: {
-       name: {
+       firstName: {
+           type: String,
+           default: ''
+       },
+       lastName: {
            type: String,
            default: ''
        },

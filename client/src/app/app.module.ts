@@ -9,7 +9,13 @@ import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
-import {AuthService} from "./services/authServices/auth.service";
+import { UserService} from "./_services/user.service";
+import { ProfileService} from "./_services/profile.service";
+import {AlertComponent} from "./_directives/alert.component";
+import {AlertService} from "./_services/alert.service";
+import {AuthGuard} from "./_guards/auth.guard";
+import {AuthenticationService} from "./_services/authentication.service";
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -18,12 +24,20 @@ import {AuthService} from "./services/authServices/auth.service";
     LoginComponent,
     HomepageComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    AlertComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule, AppRouting, FormsModule, HttpModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthGuard,
+    UserService,
+    AlertService,
+    AuthenticationService,
+    ProfileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

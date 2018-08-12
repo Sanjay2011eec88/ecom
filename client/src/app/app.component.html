@@ -17,13 +17,13 @@
         </ul>
       </li>
 
-      <li><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/signup">Signup</a>
+      <li *ngIf="!authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/signup">Signup</a>
         <!--<ul class="dropdown-menu">-->
           <!--<li><a routerLink="/signup">Signup</a></li>-->
           <!--<li><a href="/login">Login</a></li>-->
         <!--</ul>-->
       </li>
-      <li><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/login">Login</a>
+      <li *ngIf="!authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/login">Login</a>
         <!--<ul class="dropdown-menu">-->
         <!--<li><a routerLink="/signup">Signup</a></li>-->
         <!--<li><a href="/login">Login</a></li>-->
@@ -31,20 +31,20 @@
       </li>
 
 
-      <li><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/profile">Profile</a>
+      <li *ngIf="authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/profile">Profile</a>
         <!--<ul class="dropdown-menu">-->
           <!--<li><a href="/profile">Profile</a></li>-->
           <!--<li><a href="/logout">Logout</a></li>-->
         <!--</ul>-->
       </li>
 
-      <li><a class="dropdown-toggle" data-toggle="dropdown" (click)="logout()">Logout</a>
+      <li *ngIf="authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" (click)="logout()">Logout</a>
         <!--<ul class="dropdown-menu">-->
         <!--<li><a href="/profile">Profile</a></li>-->
         <!--<li><a href="/logout">Logout</a></li>-->
         <!--</ul>-->
       </li>
-      <li><a href="/cart" class="glyphicon glyphicon-shopping-cart"><span class="badge">0</span></a></li>
+      <li *ngIf="authGuard.isloggedin()"><a href="/cart" class="glyphicon glyphicon-shopping-cart"><span class="badge">0</span></a></li>
       </ul>
   </div>
 </nav>
