@@ -20,7 +20,6 @@ export class SignupComponent{
 
   register() {
     this.loading = true;
-    console.log(this.model);
     this.userService.signup(this.model)
       .subscribe(
         data => {
@@ -32,15 +31,5 @@ export class SignupComponent{
           this.loading = false;
         });
   }
-  // onSubmit(value:any){
-  //   console.log(value);
-  //   this.userService.signup(value).
-  //     subscribe(
-  //       data => {
-  //         console.log(data);
-  //         this.router.navigate(['homepage']);
-  //       },
-  //     error => console.log(error)
-  //   );
-  // }
+
 }

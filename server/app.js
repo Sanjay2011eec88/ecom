@@ -39,13 +39,14 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname+"/../client", 'public')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 var routerV1 = express.Router();
 routes.setRoutes(routerV1);
 app.use(routerV1);
 
 app.use('/*', function (req, res, next) {
-  res.sendFile(path.join(__dirname,'../../client/public', "index.html"));
+    console.log(__dirname);
+  res.sendFile(path.join(__dirname+"/../client/public","index.html"));
 });
 
 // catch 404 and forward to error handler

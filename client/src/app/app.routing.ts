@@ -7,12 +7,14 @@ import {HomepageComponent} from "./homepage/homepage.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuard} from "./_guards/auth.guard";
 import {AdminComponent} from "./admin/admin.component";
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
     { path: '', component: HomepageComponent, pathMatch:'full' },
     { path: 'homepage', component: HomepageComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'productDetail/:productID', component: ProductComponent},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'admin', component: AdminComponent,  canActivate: [AuthGuard] },
     { path: '**', redirectTo: '' }

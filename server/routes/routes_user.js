@@ -1,5 +1,6 @@
 var UserService = require('../service/userService');
 var passport = require('passport');
+var AdminService = require('../service/adminService');
 var passportConfig = require('../config/passport');
 var utils = require('../utils/authUtils');
 
@@ -50,7 +51,28 @@ module.exports.setRoutes = function(app) {
             if(err){
                 return res.status(500).send(err);
             }
+            return res.status(200).send(userProfile);
         });
-        return res.status(200).send(userProfile);
+
     });
+
+    app.get('/category/:category_id', function (req, res) {
+        AdminService.getProducts(req.params.category_id, function (err, productList) {
+            if(err){
+                return res.send(500).send(err);
+            }else {
+                return res.status(200).send(productList);
+            }
+        })
+    })
+
+    app.get('/product/:product_id', function (req, res) {
+        AdminService.getProductById(req.params.product_id, function (err, productList) {
+            if(err){
+                return res.send(500).send(err);
+            }else {
+                return res.status(200).send(productList);
+            }
+        })
+    })
 };

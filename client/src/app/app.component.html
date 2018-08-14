@@ -1,7 +1,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a routerLink="/homepage" class="navbar-brand"><img id="logo" src="../assets/images/logo.jpg"></a>
+      <!--<a routerLink="/homepage" class="navbar-brand"><img id="logo" src="../assets/images/logo.jpg"></a>-->
+      <a class="navbar-brand" routerLink="/homepage">Ecommerce</a>
+      <select [(ngModel)]="category" id="category" (change)="onChange($event)">Catogory
+        <option value=""  selected>All Categories</option>
+        <option *ngFor="let category of categoryList" [value]="category._id">{{category.name}}</option>
+      </select>
     </div>
     <form class="navbar-form navbar-left" method="post" action="/search">
       <div class="form-group">
@@ -10,14 +15,7 @@
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories</a>
-        <ul class="dropdown-menu">
-          <li><a >Ink Printer</a></li>
-          <li><a>Laser Printer</a></li>
-        </ul>
-      </li>
-
-      <li *ngIf="!authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/signup">Signup</a>
+      <li *ngIf="authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" routerLink="/admin">Admin</a>
         <!--<ul class="dropdown-menu">-->
           <!--<li><a routerLink="/signup">Signup</a></li>-->
           <!--<li><a href="/login">Login</a></li>-->
@@ -38,13 +36,13 @@
         <!--</ul>-->
       </li>
 
-      <li *ngIf="authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" (click)="logout()">Logout</a>
+      <li *ngIf="authGuard.isloggedin()"><a class="dropdown-toggle" data-toggle="dropdown" (click)="logout()" style="pointer:cursor">Logout</a>
         <!--<ul class="dropdown-menu">-->
         <!--<li><a href="/profile">Profile</a></li>-->
         <!--<li><a href="/logout">Logout</a></li>-->
         <!--</ul>-->
       </li>
-      <li *ngIf="authGuard.isloggedin()"><a href="/cart" class="glyphicon glyphicon-shopping-cart"><span class="badge">0</span></a></li>
+      <li *ngIf="authGuard.isloggedin()"><a class="glyphicon glyphicon-shopping-cart"><span class="badge">0</span></a></li>
       </ul>
   </div>
 </nav>

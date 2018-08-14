@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "^2.6.1",
     "bcrypt-nodejs": "0.0.3",
     "connect-mongo": "^2.0.1",
     "cookie-parser": "~1.4.3",
@@ -14,10 +15,14 @@
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
+    "mongoosastic": "^4.4.1",
     "mongoose": "^5.2.7",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "faker": "^4.1.0"
   }
 }

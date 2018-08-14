@@ -16,6 +16,8 @@ import {AlertService} from "./_services/alert.service";
 import {AuthGuard} from "./_guards/auth.guard";
 import {AuthenticationService} from "./_services/authentication.service";
 import { AdminComponent } from './admin/admin.component';
+import {AdminService} from "./_services/admin.service";
+import { ProductComponent } from './product/product.component';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { AdminComponent } from './admin/admin.component';
     SignupComponent,
     ProfileComponent,
     AlertComponent,
-    AdminComponent
+    AdminComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule, AppRouting, FormsModule, HttpModule
@@ -36,7 +39,8 @@ import { AdminComponent } from './admin/admin.component';
     UserService,
     AlertService,
     AuthenticationService,
-    ProfileService
+    ProfileService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

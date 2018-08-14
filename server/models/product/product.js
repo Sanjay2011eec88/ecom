@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+var mongoosastic = require('mongoosastic');
 var ProductSchema = new Schema({
     category:{
         type: Schema.Types.ObjectId,
@@ -20,4 +20,9 @@ var ProductSchema = new Schema({
     }
 });
 
+ProductSchema.plugin(mongoosastic, {
+    hosts:[
+        'localhost:9200'
+    ]
+});
 module.exports = mongoose.model('product', ProductSchema);

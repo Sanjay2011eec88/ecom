@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
   }
 
   isloggedin() {
-    console.log("Useeaasda",sessionStorage.getItem('currentUser'));
     if (sessionStorage.getItem('currentUser')) return true;
     return false;
   }

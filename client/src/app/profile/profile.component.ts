@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
   profile(){
     this.profileService.profile()
       .subscribe(data =>{
-        console.log("Dattata",data);
         this.userProfile = data;
       },error => {
         this.alertService.error(error);
