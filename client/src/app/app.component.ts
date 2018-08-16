@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {AlertService} from "./_services/alert.service";
 import {AuthGuard} from "./_guards/auth.guard";
 import {AdminService} from "./_services/admin.service";
+import {ProfileService} from "./_services/profile.service";
+import {CartService} from "./_services/cart.service";
 
 @Component({
   selector: 'app-root',
@@ -12,17 +14,21 @@ import {AdminService} from "./_services/admin.service";
 })
 export class AppComponent implements OnInit{
   category='';
+  noOfItemsInCart=0;
   constructor(
     private router: Router,
     private authService:AuthenticationService,
     private alertService: AlertService,
     private authGuard: AuthGuard,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private profileService: ProfileService,
+    private cartService: CartService
   ){}
 
   categoryList:string='';
   ngOnInit(){
     this.getCategories();
+    this.getCartLength();
   }
 
   logout() {
@@ -52,5 +58,16 @@ export class AppComponent implements OnInit{
     const categoryId = event.target.value;
     console.log(categoryId);
     this.adminService.categorySelected.emit(categoryId);
+  }
+
+  getCartLength(){
+    this.cartService.noOfitemsInCart()
+      .subscribe(
+        cartLength => {
+          this.noOfItemsInCart = cartLength.totalItems;
+        },
+        error => {
+          this.alertService.error(error);
+        })
   }
 }

@@ -6,19 +6,19 @@ var utils = require('../utils/authUtils');
 
 /* GET home page. */
 module.exports.setRoutes = function(app) {
-
+    
     app.post('/userLogin', utils.loginRedirect, (req, res, next) => {
         passport.authenticate('local-login', (err, user, info) => {
         if (err) {
            return res.status(500).send(err);
         }
         if (!user) {
-           return res.status(404).send('User not found');
+           return res.status(404).send({msg:"Username or passowrd is wrong."});
         }
         if (user) {
         req.logIn(user, function (err) {
                 if (err) {
-                   return res.status(500).send('error')
+                   return res.status(500).send({msg:"Unable to login plz check username and password"})
                 }
                    return res.status(200).send(user);
             });
@@ -55,24 +55,4 @@ module.exports.setRoutes = function(app) {
         });
 
     });
-
-    app.get('/category/:category_id', function (req, res) {
-        AdminService.getProducts(req.params.category_id, function (err, productList) {
-            if(err){
-                return res.send(500).send(err);
-            }else {
-                return res.status(200).send(productList);
-            }
-        })
-    })
-
-    app.get('/product/:product_id', function (req, res) {
-        AdminService.getProductById(req.params.product_id, function (err, productList) {
-            if(err){
-                return res.send(500).send(err);
-            }else {
-                return res.status(200).send(productList);
-            }
-        })
-    })
 };

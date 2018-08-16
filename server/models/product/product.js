@@ -6,18 +6,9 @@ var ProductSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'category'
     },
-    name:{
-        type: String,
-        required: true
-    },
-    price:{
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: false
-    }
+    name: String,
+    price: Number,
+    image: String
 });
 
 ProductSchema.plugin(mongoosastic, {
@@ -25,4 +16,4 @@ ProductSchema.plugin(mongoosastic, {
         'localhost:9200'
     ]
 });
-module.exports = mongoose.model('product', ProductSchema);
+module.exports = mongoose.model('Product', ProductSchema);

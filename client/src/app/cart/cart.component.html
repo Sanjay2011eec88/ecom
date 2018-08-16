@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6" *ngFor="let item of cardDetails.items">
+      <div class="list-group">
+        <!--<span class="list-group-item">-->
+          <div class="row">
+            <div class="col-md-3">
+                <span><img class="product-image" [src]="item.item.image" ></span>
+            </div>
+            <div class="col-md-6">
+                <p class="list-group-item-heading">{{item.item.name}}</p>
+            </div>
+            <div class="col-md-3">
+                <p>{{item.quantity}}</p>
+                <p>{{item.price}}</p>
+            </div>
+          </div>
+        <!--</span>-->
+      </div>
+    </div>
+  </div>
+</div>

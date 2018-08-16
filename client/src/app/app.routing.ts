@@ -8,6 +8,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuard} from "./_guards/auth.guard";
 import {AdminComponent} from "./admin/admin.component";
 import { ProductComponent } from './product/product.component';
+import {CartComponent} from "./cart/cart.component";
 
 const routes: Routes = [
     { path: '', component: HomepageComponent, pathMatch:'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'productDetail/:productID', component: ProductComponent},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'admin', component: AdminComponent,  canActivate: [AuthGuard] },
+    { path: 'cart', component: CartComponent, canActivate:[AuthGuard]},
     { path: '**', redirectTo: '' }
 ];
 

@@ -18,6 +18,8 @@ import {AuthenticationService} from "./_services/authentication.service";
 import { AdminComponent } from './admin/admin.component';
 import {AdminService} from "./_services/admin.service";
 import { ProductComponent } from './product/product.component';
+import {CartService} from "./_services/cart.service";
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { ProductComponent } from './product/product.component';
     ProfileComponent,
     AlertComponent,
     AdminComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule, AppRouting, FormsModule, HttpModule
@@ -40,7 +43,8 @@ import { ProductComponent } from './product/product.component';
     AlertService,
     AuthenticationService,
     ProfileService,
-    AdminService
+    AdminService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

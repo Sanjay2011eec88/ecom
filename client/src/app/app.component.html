@@ -42,7 +42,7 @@
         <!--<li><a href="/logout">Logout</a></li>-->
         <!--</ul>-->
       </li>
-      <li *ngIf="authGuard.isloggedin()"><a class="glyphicon glyphicon-shopping-cart"><span class="badge">0</span></a></li>
+      <li *ngIf="authGuard.isloggedin()" routerLink="/cart"><a class="glyphicon glyphicon-shopping-cart"><span class="badge">{{noOfItemsInCart}}</span></a></li>
       </ul>
   </div>
 </nav>

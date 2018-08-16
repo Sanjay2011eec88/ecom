@@ -17,15 +17,6 @@ category.addCategory = function (categoryObject, callback) {
     });
 };
 
-category.getCategory = function (callback) {
-    Category.find({},function (err, categoryList) {
-        if(err){
-            callback(err, null);
-        }else {
-            callback(null,categoryList)
-        }
-    })
-};
 
 category.addProducts = function (categoryName,callback) {
     async.waterfall([
@@ -57,32 +48,4 @@ category.addProducts = function (categoryName,callback) {
         }
     });
 
-};
-
-category.getProducts = function (catgoryId, callback) {
-    console.log(catgoryId);
-    var query = {};
-    if(catgoryId !== "All Categories"){
-        query = { category: catgoryId }
-    }
-    Product
-        .find(query)
-        .populate('category')
-        .exec(function(err, products) {
-            if (err) {
-                callback(err, null);
-            }else {
-                callback(null, products);
-            }
-        });
-};
-
-category.getProductById = function (product_id, callback) {
-    Product.findById({ _id:product_id }, function(err, product) {
-        if (err) {
-            callback(err, null);
-        }else {
-            callback(null, product);
-        };
-    });
 };
