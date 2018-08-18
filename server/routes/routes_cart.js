@@ -33,5 +33,16 @@ module.exports.setRoutes = function(app) {
                 return res.status(201).send(result);
             }
         })
-    })
+    });
+
+    app.post('/remove', function (req,res) {
+        cart.removeProductFromCart(req.body, req.user, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }else{
+                return res.status(200).send(result);
+            }
+        })
+    });
+
 };

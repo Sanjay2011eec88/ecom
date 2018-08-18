@@ -61,7 +61,7 @@ export class ProductComponent implements OnInit {
       product_id:this.produtDetails._id,
       priceValue:this.productPrice,
       quantity: this.quantity
-    }
+    };
     this.cartService.addProductToCart(productDetail)
       .subscribe(
         response => {

@@ -24,6 +24,7 @@ export class SignupComponent{
       .subscribe(
         data => {
           this.alertService.success('Registration successful', true);
+          sessionStorage.setItem('currentUser', data.username);
           this.router.navigate(['homepage']);
         },
         error => {

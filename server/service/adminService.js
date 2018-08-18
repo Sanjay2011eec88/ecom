@@ -47,5 +47,4 @@ category.addProducts = function (categoryName,callback) {
             callback(null,results);
         }
     });
-
 };

@@ -8,7 +8,7 @@
     <div class="col-md-4">
       <h3>{{produtDetails.name }}</h3>
       <h2>{{produtDetails.price | currency:"₹"}}</h2>
-    <form method="post" (ngSubmit)="f.form.valid && addToCart()" #f="ngForm">
+    <form (ngSubmit)="f.form.valid && addToCart()" #f="ngForm">
       <div class="btn-group" role="group" aria-label="...">
         <input type="hidden" name="quantity" id="quantity" value="1"/>
         <button type="button" id="minus" (click)="editQunatity('minus')" class="btn btn-default">-</button>

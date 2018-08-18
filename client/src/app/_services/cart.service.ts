@@ -25,4 +25,10 @@ export class CartService{
       .map((response: Response) => response.json())
       .catch((error: Response) => Observable.throw(error.json()));
   }
+
+  removeCartItem(itemDetails){
+    return this.http.post('/remove', JSON.stringify(itemDetails),{headers:this.headers})
+      .map((response: Response) => response.json())
+      .catch((error: Response) => Observable.throw(error.json()));
+  }
 }

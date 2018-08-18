@@ -4,6 +4,13 @@ const Cart = require('../models/cart/cart');
 var cart = module.exports = {};
 
 cart.getCartLength = function getCartLength(owner,callback){
+    //Could use mongo query for this
+    // db.getCollection('carts').aggregate([
+    //     {$match: {owner:ObjectId("5b741fce766af4231fad8e81")}},
+    //     {$unwind:"$items"},
+    //     {$group:{_id:null, totalQuantity:{$sum:"$items.quantity"}}}
+    // ]);
+
     var total = 0;
     var cartLength = {totalItems: total};
     Cart.findOne({ owner: owner._id }, function(err, cart) {
@@ -49,4 +56,25 @@ cart.getCartDetails = function getCartDetails(owner, callback) {
             if (err) callback(err, null);
             callback(null, cardDetails);
         });
+};
+
+
+//Not removing the item form items
+//Need to improve
+//By deleteing the item based on number and not just buy the whole item from the cart
+cart.removeProductFromCart = function removeProductFromCart(body, owner,callback) {
+    Cart.findOne({ owner: owner._id }, function(err, foundCart) {
+        let cartAfterRemovingItem = foundCart.items.filter( x => x.item != body.item._id );
+        foundCart.items = cartAfterRemovingItem;
+        console.log(JSON.stringify(foundCart.items));
+        foundCart.total = (foundCart.total - parseFloat(body.price)).toFixed(2);
+        foundCart.save(function(err, found) {
+            if (err){
+                callback(err, null);
+            }else {
+                callback(null, {msg:`Item removed successfully`});
+            }
+
+        });
+    });
 };

@@ -13,6 +13,7 @@ import {CartService} from "../_services/cart.service";
 export class CartComponent implements OnInit {
 
   cardDetails:any ='';
+  cartItem:any='';
   constructor(private adminService:AdminService,
               private alertService: AlertService,
               private route: ActivatedRoute,
@@ -32,5 +33,18 @@ export class CartComponent implements OnInit {
           this.alertService.error(error);
         }
       );
+  }
+
+
+  removeFromCart(item){
+    this.cartService.removeCartItem(item)
+      .subscribe(
+        cardDetails => {
+          this.cardDetails = cardDetails;
+        },error => {
+          this.alertService.error(error);
+        }
+      );
+
   }
 }

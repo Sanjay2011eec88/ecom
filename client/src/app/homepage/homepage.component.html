@@ -31,9 +31,9 @@
 <div class="container">
   <div class="row" id="searchResults" >
     <!-- Do for loop here -->
-    <div class="col-md-4" *ngFor="let product of this.productList">
-        <div class="thumbnail" (click)="getProduct(product._id)">
-          <img [src]=product.image>
+    <div class="col-md-4" *ngFor="let product of this.productList" >
+        <div class="thumbnail" (click)="getProduct(product._id)" >
+      <img [src]=product.image>
           <div class="caption">
             <h3>{{product.name}}</h3>
             <h3>{{product.category.name}}</h3>

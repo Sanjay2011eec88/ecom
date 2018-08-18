@@ -33,11 +33,12 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
+          console.log(data._body.email);
           sessionStorage.setItem('currentUser', data.username);
           this.router.navigate(['profile']);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error.msg);
           this.loading = false;
         });
   }
